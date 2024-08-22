@@ -8,7 +8,7 @@ const port = process.env.PORT || 8000
 const app = express()
 
 const corsOptions ={
-    origin:['http://localhost:5173','http://localhost:5174'],
+    origin:['http://localhost:5173','http://localhost:5174', 'https://wufoo-university.netlify.app'],
     Credential:true,
     optionalSuccessStatus:200,
 }
