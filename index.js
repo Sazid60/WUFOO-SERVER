@@ -34,6 +34,7 @@ const client = new MongoClient(uri, {
 
     const offerCollection = client.db('wufooUniversity').collection('offerings')
     const courseCollection = client.db('wufooUniversity').collection('courses')
+    const admissionCollection = client.db('wufooUniversity').collection('candidates')
 
     // Getting All Offers
     app.get('/offers', async(req,res) =>{
@@ -46,7 +47,15 @@ const client = new MongoClient(uri, {
         const  result = await courseCollection.find().toArray()
         res.send(result)
     })
-    
+
+    //  store all candidate data
+    app.post('/candidates', async(req,res)=>{
+        const candidateData = req.body;  
+        
+        const result = await admissionCollection.insertOne(candidateData);
+        res.send(result)
+    })
+
       // Send a ping to confirm a successful connection
       await client.db("admin").command({ ping: 1 });
       console.log("Pinged your deployment. You successfully connected to MongoDB!");
