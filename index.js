@@ -33,11 +33,20 @@ const client = new MongoClient(uri, {
     //   await client.connect();
 
     const offerCollection = client.db('wufooUniversity').collection('offerings')
+    const courseCollection = client.db('wufooUniversity').collection('courses')
 
+    // Getting All Offers
     app.get('/offers', async(req,res) =>{
         const  result = await offerCollection.find().toArray()
         res.send(result)
     })
+
+    // get all the courses
+    app.get('/courses', async(req,res) =>{
+        const  result = await courseCollection.find().toArray()
+        res.send(result)
+    })
+    
       // Send a ping to confirm a successful connection
       await client.db("admin").command({ ping: 1 });
       console.log("Pinged your deployment. You successfully connected to MongoDB!");
